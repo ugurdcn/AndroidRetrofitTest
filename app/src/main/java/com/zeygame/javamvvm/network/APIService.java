@@ -3,17 +3,18 @@ package com.zeygame.javamvvm.network;
 import com.zeygame.javamvvm.model.DetailsModel;
 import com.zeygame.javamvvm.model.SearchingModel;
 
+import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Url;
 
 public interface APIService {
     @GET
-    Call<DetailsModel> getMovieList(@Url() String name);
+    Observable<DetailsModel> getMovieDetails(@Url() String name);
 
     @GET
-    Call<SearchingModel> search(@Url String name);
+    Observable<SearchingModel> searchMovie(@Url String name);
 
-    //     Call<DetailsModel> getMovieList(@Header("Content-Type") String cType, @Url String get)
+    //     Call<DetailsModel> getMovieDetails(@Header("Content-Type") String cType, @Url String get)
 
 }

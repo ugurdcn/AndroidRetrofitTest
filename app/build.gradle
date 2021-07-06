@@ -1,5 +1,7 @@
+
 plugins {
     id 'com.android.application'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -30,23 +32,59 @@ android {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
     lintOptions {
-        disable 'InvalidPackage'
+        checkReleaseBuilds false
+        //disable 'InvalidPackage'
     }
 }
 
+
 dependencies {
+    def lifecycle_version = "2.4.0-alpha02"
+    def arch_version = "2.1.0"
 
     implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'org.jetbrains:annotations:15.0'
-
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
+
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    //viewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    // Annotation processor // for JAVA-8
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    //LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+
+    //RxJava
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+
+    // Hilt
+    implementation 'com.google.dagger:hilt-android:2.37'
+    annotationProcessor 'com.google.dagger:hilt-compiler:2.37'
+
+    implementation 'androidx.hilt:hilt-work:1.0.0'
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
+    annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0'
+
+    // Room
+    def room_version = "2.3.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+
+    implementation 'org.jetbrains:annotations:15.0'
 }
+//    def nav_version = "2.3.0-beta01"

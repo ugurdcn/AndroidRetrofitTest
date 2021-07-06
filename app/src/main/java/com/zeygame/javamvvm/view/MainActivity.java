@@ -1,4 +1,4 @@
-package com.zeygame.javamvvm;
+package com.zeygame.javamvvm.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -12,16 +12,17 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.zeygame.javamvvm.R;
 import com.zeygame.javamvvm.adapter.MovieAdapter;
-import com.zeygame.javamvvm.model.DetailsModel;
 import com.zeygame.javamvvm.model.MovieModel;
-import com.zeygame.javamvvm.model.SearchingModel;
 import com.zeygame.javamvvm.viewmodel.MovieViewModel;
 
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rcMovies;
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     private void getMovies(String name){
         // Deprecated
 //        viewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
-        //trying to..
+
         viewModel = new ViewModelProvider(this).get(MovieViewModel.class);
         viewModel.getMovieListObserver().observe(this, list -> {
             if (list!=null){
@@ -87,6 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 txResult.setText("Veri bulunamadı!");
             }
         });
-        viewModel.search(name);
+        viewModel.searchMovie(name);
     }
 }
